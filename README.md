@@ -47,7 +47,7 @@ This Node.js application serves as a robust server offering RESTful API endpoint
 
 ## API Endpoints
 
-Explore the API documentation at [https:localhost:3000/api-docs](https:localhost:3000/api-docs).
+Explore the API documentation at [https:localhost:3000/api-docs](https:localhost:3000/api-docs)
 
 ---
 
