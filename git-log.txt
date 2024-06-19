@@ -1,0 +1,22 @@
+commit de3ef101e424530d81e254b53fe126e7d90c8032 (HEAD -> main, origin/main)
+Author: k3ntaw <kenta.waibel@gmail.com>
+Date:   Wed Jun 19 14:33:26 2024 +0200
+
+    edit: finanlizing project and making formatting changes for convenince | Kenta Waibel
+
+commit a24898e82a000c9db8f7e5393bee376b657aa395
+Author: k3ntaw <kenta.waibel@gmail.com>
+Date:   Wed Jun 19 11:35:40 2024 +0200
+
+    edit: changing description in swagger.js | Kenta Waibel
+
+commit dafd375c11eb83271fb80af32a6dc7ea05e57933
+Author: k3ntaw <kenta.waibel@gmail.com>
+Date:   Wed Jun 19 11:27:23 2024 +0200
+
+    edit: adding MIT LICENSE | Kenta Waibel
+
+commit 305e6d3a10cf28493b5a1dbf0c32406834e3f3b1
+Merge: 1a89ad6 433e176
+Author: k3ntaw <kenta.waibel@gmail.com>
+:
