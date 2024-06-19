@@ -39,18 +39,15 @@ function generateToken() {
   return Math.random().toString(36).substr(2);
 }
 
-// Error handling middleware
 app.use((err, req, res, next) => {
   console.error(`An error occurred: ${err.message}`);
   res.status(500).json({ message: 'Internal Server Error' });
 });
 
-// Login endpoint
 app.post('/login', (req, res, next) => {
   try {
     const { username, password } = req.body;
     
-    // Simulating an error for testing logging
     if (password === 'error') {
       throw new Error('Simulated error in login');
     }
@@ -60,7 +57,7 @@ app.post('/login', (req, res, next) => {
       req.session.user = { username: username, token: token };
       res.json({ message: 'Login successful', username: username, token: token });
     } else {
-      res.sendStatus(401); // Unauthorized
+      res.sendStatus(401);
     }
   } catch (err) {
     console.error(`Error in login endpoint: ${err.message}`);
@@ -68,7 +65,6 @@ app.post('/login', (req, res, next) => {
   }
 });
 
-// Verify endpoint
 app.get('/verify', authenticate, (req, res, next) => {
   try {
     res.json({ token: req.session.user.token, message: 'Token is still usable' });
@@ -78,15 +74,14 @@ app.get('/verify', authenticate, (req, res, next) => {
   }
 });
 
-// Logout endpoint
 app.delete('/logout', authenticate, (req, res, next) => {
   try {
     req.session.destroy(err => {
       if (err) {
         console.error(`Error destroying session: ${err.message}`);
-        return res.sendStatus(500); // Internal Server Error
+        return res.sendStatus(500);
       }
-      res.sendStatus(204); // No Content
+      res.sendStatus(204);
     });
   } catch (err) {
     console.error(`Error in logout endpoint: ${err.message}`);
@@ -94,7 +89,6 @@ app.delete('/logout', authenticate, (req, res, next) => {
   }
 });
 
-// List all tasks endpoint
 app.get('/tasks', authenticate, (req, res, next) => {
   try {
     res.json(tasks);
@@ -104,7 +98,6 @@ app.get('/tasks', authenticate, (req, res, next) => {
   }
 });
 
-// Create a new task endpoint
 app.post('/tasks', authenticate, (req, res, next) => {
   try {
     const { title, description, done, dueDate } = req.body;
@@ -129,7 +122,6 @@ app.post('/tasks', authenticate, (req, res, next) => {
   }
 });
 
-// Get a specific task endpoint
 app.get('/tasks/:id', authenticate, (req, res, next) => {
   try {
     const id = parseInt(req.params.id);
@@ -146,7 +138,6 @@ app.get('/tasks/:id', authenticate, (req, res, next) => {
   }
 });
 
-// Update a specific task endpoint
 app.patch('/tasks/:id', authenticate, (req, res, next) => {
   try {
     const id = parseInt(req.params.id);
@@ -168,7 +159,6 @@ app.patch('/tasks/:id', authenticate, (req, res, next) => {
   }
 });
 
-// Delete a specific task endpoint
 app.delete('/tasks/:id', authenticate, (req, res, next) => {
   try {
     const id = parseInt(req.params.id);
@@ -186,13 +176,11 @@ app.delete('/tasks/:id', authenticate, (req, res, next) => {
   }
 });
 
-// Middleware for handling undefined routes
 app.use((req, res, next) => {
   console.error(`404 - Endpoint not found: ${req.originalUrl}`);
   res.status(404).json({ message: 'Endpoint not found' });
 });
 
-// Start server
 app.listen(port, () => {
   console.log(`Server is running on http://localhost:${port}`);
 });
